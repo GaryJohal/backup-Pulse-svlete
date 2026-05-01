@@ -1,0 +1,767 @@
+
+> backuppulse-svelte@0.1.0 dev
+> vite dev
+
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m2478[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+5:35:16 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/jobs/+page.svelte:110:6 A11y: A form label must be associated with a control.
+5:35:16 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/jobs/+page.svelte:120:6 A11y: A form label must be associated with a control.
+5:35:16 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/jobs/+page.svelte:129:6 A11y: A form label must be associated with a control.
+5:35:16 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/jobs/+page.svelte:140:6 A11y: A form label must be associated with a control.
+5:35:16 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/jobs/+page.svelte:145:6 A11y: A form label must be associated with a control.
+5:35:16 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/jobs/+page.svelte:150:6 A11y: A form label must be associated with a control.
+5:35:40 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/+page.svelte:748:2 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+5:35:40 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/+page.svelte:748:2 A11y: <div> with click handler must have an ARIA role
+5:35:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/login/+page.svelte:30:8 A11y: A form label must be associated with a control.
+5:35:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/login/+page.svelte:35:8 A11y: A form label must be associated with a control.
+5:35:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/login/+page.svelte:40:8 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:402:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:408:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:413:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:420:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:425:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:430:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:504:26 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:509:26 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:611:28 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:616:28 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:621:28 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:626:28 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:864:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:869:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:881:16 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:895:14 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:959:26 A11y: A form label must be associated with a control.
+5:36:21 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/manage/+page.svelte:964:26 A11y: A form label must be associated with a control.
+5:36:22 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/admin/plans/+page.svelte:399:14 A11y: A form label must be associated with a control.
+5:36:22 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/admin/plans/+page.svelte:414:14 A11y: A form label must be associated with a control.
+5:36:22 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/admin/plans/+page.svelte:438:16 A11y: A form label must be associated with a control.
+5:36:22 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/admin/plans/+page.svelte:452:16 A11y: A form label must be associated with a control.
+5:36:22 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/admin/plans/+page.svelte:469:14 A11y: A form label must be associated with a control.
+
+[1;31m[404] GET /favicon.png[0m
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1032:18 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1046:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1057:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1408:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1467:20 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1535:20 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1539:20 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1546:20 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1554:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1558:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1570:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1574:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1581:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1585:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1589:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1593:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1719:20 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1723:20 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1727:20 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1742:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1749:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1753:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1757:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1768:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1778:24 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1788:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1962:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1966:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1970:22 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:1978:18 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:2053:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:2062:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:2210:18 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/integrations/+page.svelte:2271:28 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:719:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:776:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:782:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:791:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:889:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:897:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:905:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:922:12 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:948:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:962:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:967:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:974:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:979:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:984:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:989:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1003:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1008:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1013:16 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1111:10 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1225:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1229:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1233:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1237:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1275:28 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1279:28 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1283:28 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1291:28 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1337:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1341:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1345:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1349:14 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1391:28 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1395:28 A11y: A form label must be associated with a control.
+5:36:51 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1399:28 A11y: A form label must be associated with a control.
+5:37:42 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/reports/+page.svelte:477:16 A11y: A form label must be associated with a control.
+[2m5:57:15 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/jobs/+page.svelte, /src/app.css, /src/routes/+layout.svelte, /src/routes/+page.svelte, /src/routes/login/+page.svelte, /src/routes/manage/+page.svelte, /src/routes/admin/plans/+page.svelte, /src/routes/integrations/+page.svelte, /src/routes/settings/+page.svelte, /src/routes/reports/+page.svelte, /src/routes/audit/+page.svelte[22m
+[2m5:57:25 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/jobs/+page.svelte, /src/app.css, /src/routes/+layout.svelte, /src/routes/+page.svelte, /src/routes/login/+page.svelte, /src/routes/manage/+page.svelte, /src/routes/admin/plans/+page.svelte, /src/routes/integrations/+page.svelte, /src/routes/settings/+page.svelte, /src/routes/reports/+page.svelte, /src/routes/audit/+page.svelte[22m
+[2m6:00:28 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:282:41 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:282:41
+[33m   280 |          {@const [key,label] = item}
+   281 |          <button
+   282 |            onclick={() => activeTab = key as Tab}
+                                                   ^
+   283 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   284 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:00:28 PM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:282:41 Expected }
+[2m6:01:13 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:343:58 Unexpected token[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:343:58
+[33m   341 |                schedule_id: s.id, schedule_name: s.name, device_name: d,
+   342 |                org_name: s.org_name,
+   343 |                last_status: (s.last_run_status ?? 'never') as TestRestoreHealth['last_status'],
+                                                                    ^
+   344 |                last_run_at: s.last_run_at,
+   345 |                rto_seconds: s.rto_seconds,[39m
+[2m6:01:13 PM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:343:58 Unexpected token
+[2m6:01:23 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:343:58 Unexpected token[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:343:58
+[33m   341 |                schedule_id: s.id, schedule_name: s.name, device_name: d,
+   342 |                org_name: s.org_name,
+   343 |                last_status: (s.last_run_status ?? 'never') as TestRestoreHealth['last_status'],
+                                                                    ^
+   344 |                last_run_at: s.last_run_at,
+   345 |                rto_seconds: s.rto_seconds,[39m
+[2m6:01:37 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:414:78 Unexpected token[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:414:78
+[33m   412 |        <!-- Filter pills -->
+   413 |        <div style="display:flex;gap:0.5rem;">
+   414 |          {#each ([['all','All'],['enabled','Enabled'],['disabled','Disabled']] as [string,string][])}
+                                                                                        ^
+   415 |            {@const [key,label] = item}
+   416 |            <button[39m
+[2m6:01:37 PM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:414:78 Unexpected token
+[2m6:02:47 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:620:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:633:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:648:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:663:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:680:12 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:692:12 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:703:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:761:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:769:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:777:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:785:10 A11y: A form label must be associated with a control.
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:10:14 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:11:16 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:12:12 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:13:16 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:14:11 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:15:18 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:16:15 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:17:11 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:18:14 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:19:18 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:20:19 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:21:15 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:22:16 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:23:15 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:24:15 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:25:15 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:26:20 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:27:17 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:28:16 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:29:17 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:30:16 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:31:18 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:32:16 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:33:19 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:34:18 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:35:18 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:36:17 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:37:12 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:38:13 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:39:15 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:40:12 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:41:12 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:42:11 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:43:11 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:44:15 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:45:14 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:46:13 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:47:13 'state' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:56:20 'derived' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:59:19 'derived' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:62:0 'effect' is not defined
+6:02:48 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:259:18 'derived' is not defined
+
+[1;31m[404] GET /favicon.png[0m
+[2m6:13:40 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:286:42
+[33m   284 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   285 |          <button
+   286 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   287 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   288 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:13:40 PM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }
+[2m6:13:42 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:286:42
+[33m   284 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   285 |          <button
+   286 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   287 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   288 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:13:45 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:286:42
+[33m   284 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   285 |          <button
+   286 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   287 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   288 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:13:47 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:286:42
+[33m   284 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   285 |          <button
+   286 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   287 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   288 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:13:48 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:286:42
+[33m   284 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   285 |          <button
+   286 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   287 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   288 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:13:55 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:286:42
+[33m   284 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   285 |          <button
+   286 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   287 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   288 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:13:57 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:286:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:286:42
+[33m   284 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   285 |          <button
+   286 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   287 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   288 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:14:04 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:295:42 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:295:42
+[33m   293 |        {#each [['dashboard','Dashboard'],['schedules','Schedules'],['history','Run History']] as [key, label]}
+   294 |          <button
+   295 |            on:click={() => activeTab = key as Tab}
+                                                    ^
+   296 |            style="padding:0.625rem 1rem;font-size:0.875rem;font-weight:500;background:none;border:none;
+   297 |                   cursor:pointer;border-bottom:2px solid {activeTab===key ? '#0094ba' : 'transparent'};[39m
+[2m6:14:04 PM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:295:42 Expected }
+[2m6:14:13 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:408:46 Expected }[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:408:46
+[33m   406 |          {#each [['all','All'],['enabled','Enabled'],['disabled','Disabled']] as [key, label]}
+   407 |            <button
+   408 |              on:click={() => schedFilter = key as typeof schedFilter}
+                                                        ^
+   409 |              style="padding:0.25rem 0.75rem;font-size:0.8rem;border-radius:9999px;cursor:pointer;
+   410 |                     background:{schedFilter===key ? '#0094ba22' : 'transparent'};[39m
+[2m6:14:13 PM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:408:46 Expected }
+[2m6:14:22 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:453:55 Unexpected token[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:453:55
+[33m   451 |              {#each filteredSched as s (s.id)}
+   452 |                <tr style="border-bottom:1px solid #1f2937;"
+   453 |                    on:mouseenter={e => (e.currentTarget as HTMLElement).style.background='#1a1a2e'}
+                                                                 ^
+   454 |                    on:mouseleave={e => (e.currentTarget as HTMLElement).style.background='transparent'}>
+   455 |                  <td style="padding:0.75rem 1rem;font-weight:600;color:#ffffff;">{s.name}</td>[39m
+[2m6:14:22 PM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:453:55 Unexpected token
+[2m6:14:24 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:453:55 Unexpected token[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:453:55
+[33m   451 |              {#each filteredSched as s (s.id)}
+   452 |                <tr style="border-bottom:1px solid #1f2937;"
+   453 |                    on:mouseenter={e => (e.currentTarget as HTMLElement).style.background='#1a1a2e'}
+                                                                 ^
+   454 |                    on:mouseleave={e => (e.currentTarget as HTMLElement).style.background='transparent'}>
+   455 |                  <td style="padding:0.75rem 1rem;font-weight:600;color:#ffffff;">{s.name}</td>[39m
+[2m6:14:29 PM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:453:55 Unexpected token[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:453:55
+[33m   451 |              {#each filteredSched as s (s.id)}
+   452 |                <tr style="border-bottom:1px solid #1f2937;"
+   453 |                    on:mouseenter={e => (e.currentTarget as HTMLElement).style.background='#1a1a2e'}
+                                                                 ^
+   454 |                    on:mouseleave={e => (e.currentTarget as HTMLElement).style.background='transparent'}>
+   455 |                  <td style="padding:0.75rem 1rem;font-weight:600;color:#ffffff;">{s.name}</td>[39m
+[2m6:14:42 PM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:572:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:572:4 A11y: <div> with click handler must have an ARIA role
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:591:10 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:600:10 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:612:10 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:623:10 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:637:12 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:649:12 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:659:10 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:718:12 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:735:10 A11y: A form label must be associated with a control.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:926:6 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:926:6 A11y: <div> with click handler must have an ARIA role
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:923:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+6:14:43 PM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:923:4 A11y: <div> with click handler must have an ARIA role
+[2m4:45:55 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/+layout.svelte, /src/app.css[22m
+[2m4:47:43 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/+layout.svelte, /src/app.css[22m
+[2m5:20:22 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/jobs/+page.svelte, /src/app.css, /src/routes/+layout.svelte, /src/routes/+page.svelte, /src/routes/login/+page.svelte, /src/routes/manage/+page.svelte, /src/routes/admin/plans/+page.svelte, /src/routes/integrations/+page.svelte, /src/routes/settings/+page.svelte, /src/routes/reports/+page.svelte, /src/routes/audit/+page.svelte, /src/routes/test-restore/+page.svelte[22m
+[2m5:20:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/jobs/+page.svelte, /src/app.css, /src/routes/+layout.svelte, /src/routes/+page.svelte, /src/routes/login/+page.svelte, /src/routes/manage/+page.svelte, /src/routes/admin/plans/+page.svelte, /src/routes/integrations/+page.svelte, /src/routes/settings/+page.svelte, /src/routes/reports/+page.svelte, /src/routes/audit/+page.svelte, /src/routes/test-restore/+page.svelte[22m
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:719:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:776:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:782:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:791:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:889:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:897:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:905:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:922:12 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:948:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:962:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:967:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:974:16 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:979:16 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:984:16 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:989:16 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1003:16 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1008:16 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1013:16 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1111:10 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1225:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1229:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1233:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1237:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1275:28 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1279:28 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1283:28 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1291:28 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1337:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1341:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1345:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1349:14 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1391:28 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1395:28 A11y: A form label must be associated with a control.
+5:20:39 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1399:28 A11y: A form label must be associated with a control.
+[2m5:21:21 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:868:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:925:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:931:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:940:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1038:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1046:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1054:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1071:12 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1097:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1111:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1116:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1123:16 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1128:16 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1133:16 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1138:16 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1152:16 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1157:16 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1162:16 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1260:10 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1374:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1378:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1382:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1386:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1424:28 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1428:28 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1432:28 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1440:28 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1486:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1490:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1494:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1498:14 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1540:28 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1544:28 A11y: A form label must be associated with a control.
+5:21:21 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1548:28 A11y: A form label must be associated with a control.
+[2m5:21:51 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:883:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:940:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:946:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:955:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1053:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1061:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1069:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1086:12 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1112:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1126:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1131:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1138:16 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1143:16 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1148:16 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1153:16 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1167:16 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1172:16 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1177:16 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1275:10 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1389:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1393:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1397:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1401:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1439:28 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1443:28 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1447:28 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1455:28 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1501:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1505:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1509:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1513:14 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1555:28 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1559:28 A11y: A form label must be associated with a control.
+5:21:51 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1563:28 A11y: A form label must be associated with a control.
+[2m5:22:01 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:884:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:941:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:947:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:956:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1054:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1062:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1070:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1087:12 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1113:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1127:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1132:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1139:16 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1144:16 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1149:16 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1154:16 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1168:16 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1173:16 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1178:16 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1276:10 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1390:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1394:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1398:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1402:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1440:28 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1444:28 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1448:28 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1456:28 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1502:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1506:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1510:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1514:14 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1556:28 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1560:28 A11y: A form label must be associated with a control.
+5:22:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1564:28 A11y: A form label must be associated with a control.
+[2m5:22:09 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:886:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:943:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:949:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:958:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1056:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1064:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1072:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1089:12 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1115:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1129:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1134:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1141:16 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1146:16 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1151:16 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1156:16 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1170:16 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1175:16 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1180:16 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1278:10 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1392:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1396:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1400:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1404:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1442:28 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1446:28 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1450:28 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1458:28 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1504:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1508:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1512:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1516:14 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1558:28 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1562:28 A11y: A form label must be associated with a control.
+5:22:09 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1566:28 A11y: A form label must be associated with a control.
+[2m5:24:01 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:886:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:943:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:949:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:958:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1056:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1064:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1072:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1089:12 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1115:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1129:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1134:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1141:16 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1146:16 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1151:16 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1156:16 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1170:16 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1175:16 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1180:16 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1278:10 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1412:40 'testMailbox' is not defined
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1796:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1800:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1804:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1808:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1846:28 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1850:28 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1854:28 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1862:28 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1908:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1912:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1916:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1920:14 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1962:28 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1966:28 A11y: A form label must be associated with a control.
+5:24:02 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1970:28 A11y: A form label must be associated with a control.
+[2m5:24:51 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:886:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:943:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:949:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:958:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1056:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1064:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1072:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1089:12 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1115:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1129:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1134:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1141:16 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1146:16 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1151:16 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1156:16 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1170:16 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1175:16 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1180:16 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1278:10 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1796:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1800:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1804:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1808:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1846:28 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1850:28 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1854:28 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1862:28 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1908:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1912:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1916:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1920:14 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1962:28 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1966:28 A11y: A form label must be associated with a control.
+5:24:52 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1970:28 A11y: A form label must be associated with a control.
+[2m5:32:23 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:32:36 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:32:44 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:32:54 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:33:02 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:33:19 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:33:29 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:886:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:943:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:949:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:958:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1056:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1064:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1072:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1089:12 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1115:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1129:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1134:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1141:16 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1146:16 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1151:16 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1156:16 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1170:16 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1175:16 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1180:16 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1278:10 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1796:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1800:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1804:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1808:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1846:28 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1850:28 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1854:28 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1862:28 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1908:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1912:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1916:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1920:14 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1962:28 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1966:28 A11y: A form label must be associated with a control.
+5:34:07 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1970:28 A11y: A form label must be associated with a control.
+[2m5:34:16 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:34:26 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:37:15 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:37:24 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:37:39 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:38:01 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+[2m5:38:09 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/settings/+page.svelte, /src/app.css[22m
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:892:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:949:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:955:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:964:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1062:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1070:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1078:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1095:12 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1121:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1135:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1140:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1147:16 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1152:16 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1157:16 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1162:16 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1176:16 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1181:16 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1186:16 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1284:10 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1803:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1807:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1811:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1815:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1853:28 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1857:28 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1861:28 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1869:28 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1915:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1919:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1923:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1927:14 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1969:28 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1973:28 A11y: A form label must be associated with a control.
+5:51:06 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/settings/+page.svelte:1977:28 A11y: A form label must be associated with a control.
+[2m6:17:44 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/app.html[22m
+[2m6:17:44 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2m.svelte-kit/generated/server/internal.js[22m
+[2m9:11:56 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:728:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:728:4 A11y: <div> with click handler must have an ARIA role
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:747:10 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:756:10 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:768:10 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:779:10 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:793:12 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:805:12 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:815:10 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:874:12 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:891:10 A11y: A form label must be associated with a control.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1082:6 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1082:6 A11y: <div> with click handler must have an ARIA role
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1079:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:11:57 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1079:4 A11y: <div> with click handler must have an ARIA role
+[2m9:15:30 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:546:47 Unexpected token[39m
+  Plugin: [35mvite-plugin-svelte[39m
+  File: [36mC:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte[39m:546:47
+[33m   544 |            tabindex="0"
+   545 |            style="background:#23233a;border:1px solid #374151;border-radius:11px;padding:14px 16px;overflow:hidden;animation:fadeUp 0.4s ease both;animation-delay:0.1s;cursor:pointer;transition:border-color 0.15s;"
+   546 |            on:mouseenter={e => (e.currentTarget as HTMLElement).style.borderColor = '#f87171'}
+                                                         ^
+   547 |            on:mouseleave={e => (e.currentTarget as HTMLElement).style.borderColor = '#374151'}
+   548 |          >[39m
+[2m9:15:30 AM[22m [31m[1m[vite][22m[39m Pre-transform error: C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:546:47 Unexpected token
+[2m9:17:53 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1059:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1059:4 A11y: <div> with click handler must have an ARIA role
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1078:10 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1087:10 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1099:10 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1110:10 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1124:12 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1136:12 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1146:10 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1205:12 A11y: A form label must be associated with a control.
+9:17:54 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1222:10 A11y: A form label must be associated with a control.
+[2m9:21:40 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1061:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1061:4 A11y: <div> with click handler must have an ARIA role
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1080:10 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1089:10 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1101:10 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1112:10 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1126:12 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1138:12 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1148:10 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1207:12 A11y: A form label must be associated with a control.
+9:21:40 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1224:10 A11y: A form label must be associated with a control.
+[2m9:22:37 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1061:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1061:4 A11y: <div> with click handler must have an ARIA role
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1080:10 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1089:10 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1101:10 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1112:10 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1126:12 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1138:12 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1148:10 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1207:12 A11y: A form label must be associated with a control.
+9:22:38 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1224:10 A11y: A form label must be associated with a control.
+[2m9:28:18 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1063:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1063:4 A11y: <div> with click handler must have an ARIA role
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1082:10 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1091:10 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1103:10 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1114:10 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1128:12 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1140:12 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1150:10 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1209:12 A11y: A form label must be associated with a control.
+9:28:19 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1226:10 A11y: A form label must be associated with a control.
+[2m9:28:27 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/test-restore/+page.svelte, /src/app.css[22m
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1063:4 A11y: visible, non-interactive elements with an on:click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as <button type="button"> or <a> might be more appropriate. See https://svelte.dev/docs/accessibility-warnings#a11y-click-events-have-key-events for more details.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1063:4 A11y: <div> with click handler must have an ARIA role
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1082:10 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1091:10 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1103:10 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1114:10 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1128:12 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1140:12 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1150:10 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1209:12 A11y: A form label must be associated with a control.
+9:28:28 AM [vite-plugin-svelte] C:/Projects/BackupPulseSvelte/src/routes/test-restore/+page.svelte:1226:10 A11y: A form label must be associated with a control.
+[2m11:00:19 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/app.css, /src/routes/admin/plans/+page.svelte, /src/routes/settings/+page.svelte[22m
+[2m11:00:36 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/jobs/+page.svelte, /src/app.css, /src/routes/+layout.svelte, /src/routes/+page.svelte, /src/routes/login/+page.svelte, /src/routes/manage/+page.svelte, /src/routes/admin/plans/+page.svelte, /src/routes/integrations/+page.svelte, /src/routes/settings/+page.svelte, /src/routes/reports/+page.svelte, /src/routes/audit/+page.svelte, /src/routes/test-restore/+page.svelte[22m
+[2m11:00:46 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/admin/plans/+page.svelte, /src/app.css[22m
+[2m11:00:56 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/admin/plans/+page.svelte, /src/app.css[22m
+[2m11:01:06 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/admin/plans/+page.svelte, /src/app.css[22m
+[2m11:01:25 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/admin/plans/+page.svelte, /src/app.css[22m
+[2m11:02:43 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/routes/admin/plans/+page.svelte, /src/app.css, /src/routes/admin/plans/+page.svelte?svelte&type=style&lang.css[22m
+
+[1;31m[404] GET /favicon.png[0m

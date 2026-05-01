@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes pulse-mic {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  50%       { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+
+/* ── CSS variables ─────────────────────────────────────────────────────────────
+   Defaults = Dark Navy theme. +layout.svelte overwrites these on :root at
+   runtime based on the tenant's saved theme preference.
+   --bp-primary / --bp-primary-dark are also set at runtime from branding.      */
+:root {
+  --bp-primary:        #00adda;
+  --bp-primary-dark:   #0094ba;
+
+  --bp-bg:             #1e222c;   /* page background */
+  --bp-surface:        #252b38;   /* cards, panels, inputs */
+  --bp-surface-2:      #1a1f2b;   /* table headers, elevated rows */
+  --bp-text:           #b3e9f6;   /* body text */
+  --bp-text-bright:    #f0f0f0;   /* headings / strong text */
+  --bp-text-muted:     #8b98a8;   /* secondary / muted text */
+  --bp-border:         #3a4255;   /* borders */
+  --bp-sidebar:        #174366;   /* sidebar background */
+  --bp-sidebar-border: #0f2d47;   /* sidebar border */
+  --bp-sidebar-text:   #b3e9f6;   /* sidebar nav link text */
+}
+
+/* ── Dark-theme base ─────────────────────────────────────────────────────────── */
+@layer base {
+  body {
+    background-color: var(--bp-bg);
+    color: var(--bp-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Form controls */
+  input:not([type='checkbox']):not([type='radio']):not([type='color']),
+  select,
+  textarea {
+    background-color: var(--bp-surface);
+    color: #f0f0f0;
+    border-color: var(--bp-border);
+  }
+  input:not([type='checkbox']):not([type='radio']):not([type='color']):focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--bp-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--bp-primary) 25%, transparent);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--bp-text-muted);
+  }
+
+  option {
+    background-color: var(--bp-surface);
+    color: #f0f0f0;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar       { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bp-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bp-border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--bp-text-muted); }
+}
+
+/* ── Surface overrides — dark equivalents for light Tailwind utility classes ───
+   bg-white, bg-gray-50, bg-gray-100 etc. would render light on a dark page.    */
+@layer utilities {
+  .bg-white {
+    --tw-bg-opacity: 1;
+    background-color: var(--bp-surface) !important;
+  }
+  .bg-gray-50,
+  .hover\:bg-gray-50:hover  { background-color: var(--bp-surface-2) !important; }
+  .bg-gray-100              { background-color: var(--bp-surface-2) !important; }
+
+  /* Row hover / selection — subtle brand tint */
+  .hover\:bg-blue-50:hover,
+  .bg-blue-50               { background-color: color-mix(in srgb, var(--bp-primary) 8%, transparent) !important; }
+
+  /* Error rows */
+  .bg-red-50                { background-color: rgba(239, 68, 68, 0.08) !important; }
+
+  /* Theme-aware text — overrides the baked-in Tailwind gray palette so the
+     inverted dark-theme grays don't bleed into the light theme.             */
+  .text-gray-900, .text-gray-800 { color: var(--bp-text-bright) !important; }
+  .text-gray-700, .text-gray-600 { color: var(--bp-text)        !important; }
+  .text-gray-500, .text-gray-400 { color: var(--bp-text-muted)  !important; }
+
+  /* Brand colour utilities → runtime CSS variable */
+  .bg-brand-600,
+  .hover\:bg-brand-600:hover  { background-color: var(--bp-primary) !important; }
+  .bg-brand-700,
+  .hover\:bg-brand-700:hover  { background-color: var(--bp-primary-dark) !important; }
+  .bg-brand-500               { background-color: var(--bp-primary) !important; }
+
+  .text-brand-500,
+  .text-brand-600,
+  .text-brand-700             { color: var(--bp-primary) !important; }
+
+  .border-brand-600,
+  .border-brand-700           { border-color: var(--bp-primary) !important; }
+
+  .focus\:ring-brand-500:focus,
+  .focus\:border-brand-500:focus {
+    --tw-ring-color: var(--bp-primary);
+    border-color: var(--bp-primary);
+  }
+}
+
+/* ── Component classes ──────────────────────────────────────────────────────── */
+@layer components {
+  /* Status badges */
+  .badge-success {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold;
+    background-color: rgba(190, 214, 47, 0.12);
+    color: #bed62f;
+    border: 1px solid rgba(190, 214, 47, 0.25);
+  }
+  .badge-failed {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold;
+    background-color: rgba(239, 68, 68, 0.12);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+  }
+  .badge-warning {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold;
+    background-color: rgba(255, 139, 23, 0.12);
+    color: #ff8b17;
+    border: 1px solid rgba(255, 139, 23, 0.25);
+  }
+  .badge-action {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold;
+    background-color: rgba(255, 139, 23, 0.10);
+    color: #ff8b17;
+    border: 1px solid rgba(255, 139, 23, 0.20);
+  }
+  .badge-unknown {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold;
+    background-color: rgba(136, 136, 136, 0.12);
+    color: #888888;
+    border: 1px solid rgba(136, 136, 136, 0.20);
+  }
+
+  /* Stat card */
+  .stat-card {
+    background-color: var(--bp-surface);
+    @apply rounded-lg p-5 flex flex-col gap-1;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.55);
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50 transition-colors;
+    background-color: var(--bp-primary);
+    color: #ffffff;
+  }
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--bp-primary-dark);
+  }
+
+  /* Danger button */
+  .btn-danger {
+    @apply px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50 transition-colors;
+    background-color: #dc2626;
+    color: #ffffff;
+  }
+  .btn-danger:hover:not(:disabled) {
+    background-color: #b91c1c;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply px-4 py-2 rounded-md text-sm font-medium transition-colors;
+    background-color: transparent;
+    border: 1px solid var(--bp-border);
+    color: var(--bp-text);
+  }
+  .btn-secondary:hover {
+    background-color: var(--bp-surface);
+    border-color: var(--bp-text-muted);
+    color: #f0f0f0;
+  }
+}
