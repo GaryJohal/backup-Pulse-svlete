@@ -90,6 +90,245 @@
   let testingId: number | null = null;
   let testResults: Record<number, { status: string; message: string }> = {};
 
+  // ── PSA sub-tab state ─────────────────────────────────────────────────────
+  let psaSubTab: 'setup' | 'client_mapping' | 'asset_mapping' = 'setup';
+
+  type PsaClient = { psa_client_id: string; name: string; mapped_org_id: number | null };
+  type OrgOption  = { id: number; name: string };
+  let psaClients: PsaClient[] = [];
+  let psaOrgs: OrgOption[] = [];
+  let psaClientsLoading = false;
+  let psaClientsError = '';
+  let psaClientMappings: Record<string, number | ''> = {};
+  let savingMappings = false;
+  let mappingsSaved = '';
+
+  // ── Client Mapping — search / filter / pagination ────────────────────────
+  let psaSearch = '';
+  let psaMappingFilter: 'all' | 'mapped' | 'unmapped' = 'all';
+  let psaPage = 1;
+  const PSA_PAGE_SIZE = 50;
+
+  $: psaFilteredClients = psaClients.filter(c => {
+    if (psaSearch && !c.name.toLowerCase().includes(psaSearch.toLowerCase())) return false;
+    if (psaMappingFilter === 'mapped'   && !psaClientMappings[c.psa_client_id]) return false;
+    if (psaMappingFilter === 'unmapped' &&  psaClientMappings[c.psa_client_id]) return false;
+    return true;
+  });
+  $: psaTotalPages  = Math.max(1, Math.ceil(psaFilteredClients.length / PSA_PAGE_SIZE));
+  $: psaPageClients = psaFilteredClients.slice((psaPage - 1) * PSA_PAGE_SIZE, psaPage * PSA_PAGE_SIZE);
+  $: if (psaSearch || psaMappingFilter) psaPage = 1;
+
+  let creatingOrg: Record<string, boolean> = {};
+
+  async function createAndMapOrg(client: PsaClient) {
+    creatingOrg = { ...creatingOrg, [client.psa_client_id]: true };
+    try {
+      const res = await apiFetch('/api/v1/assets/psa-clients/create-org', {
+        method: 'POST',
+        body: JSON.stringify({ psa_client_id: client.psa_client_id, name: client.name }),
+      });
+      psaOrgs = [...psaOrgs, { id: res.org_id, name: res.name }];
+      psaClientMappings = { ...psaClientMappings, [client.psa_client_id]: res.org_id };
+    } catch (e: any) { psaClientsError = e.message ?? 'Failed to create org'; }
+    finally { creatingOrg = { ...creatingOrg, [client.psa_client_id]: false }; }
+  }
+
+  let psaSyncMsg = '';
+  let psaSyncing = false;
+
+  // ── PSA asset manual mapping state ────────────────────────────────────────
+  type PsaAsset = {
+    source_id: string; name: string; org_name: string;
+    psa_client_id: string | null; device_type: string | null; serial: string | null;
+    mapped_device_id: number | null; mapped_device_name: string | null;
+  };
+  type DeviceOption = { id: number; name: string; org_id: number; org_name: string; msp_name: string };
+
+  let psaAssets: PsaAsset[] = [];
+  let psaDeviceOptions: DeviceOption[] = [];
+  let psaAssetsLoading = false;
+  let psaAssetsError = '';
+  let psaAssetMappings: Record<string, number | ''> = {};
+  let savingAssetMappings = false;
+  let assetMappingsSaved = '';
+  let creatingDevice: Record<string, boolean> = {};
+
+  let assetSearch = '';
+  let assetMappingFilter: 'all' | 'mapped' | 'unmapped' = 'all';
+  let assetClientFilter = '';
+  let assetPage = 1;
+  const ASSET_PAGE_SIZE = 50;
+
+  $: assetClientOptions = [...new Set(psaAssets.map(a => a.org_name).filter(Boolean))].sort();
+  $: assetFiltered = psaAssets.filter(a => {
+    if (assetSearch && !a.name.toLowerCase().includes(assetSearch.toLowerCase()) &&
+        !a.org_name.toLowerCase().includes(assetSearch.toLowerCase())) return false;
+    if (assetMappingFilter === 'mapped'   && !psaAssetMappings[a.source_id]) return false;
+    if (assetMappingFilter === 'unmapped' &&  psaAssetMappings[a.source_id]) return false;
+    if (assetClientFilter && a.org_name !== assetClientFilter) return false;
+    return true;
+  });
+  $: assetTotalPages = Math.max(1, Math.ceil(assetFiltered.length / ASSET_PAGE_SIZE));
+  $: assetPageItems  = assetFiltered.slice((assetPage - 1) * ASSET_PAGE_SIZE, assetPage * ASSET_PAGE_SIZE);
+  $: if (assetSearch || assetMappingFilter || assetClientFilter) assetPage = 1;
+
+  // Group devices by org for the mapping dropdown
+  $: groupedDevices = (() => {
+    const map = new Map<string, DeviceOption[]>();
+    for (const d of psaDeviceOptions) {
+      const key = d.org_name || 'Unknown';
+      if (!map.has(key)) map.set(key, []);
+      map.get(key)!.push(d);
+    }
+    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
+  })();
+
+  // ── PSA filter config state (kept for settings panel) ────────────────────
+  type AssetTypeOption = { id: string; name: string };
+  type ClientTypeOption = { id: string; name: string };
+  let filterAssetTypes: AssetTypeOption[] = [];
+  let filterClientTypes: ClientTypeOption[] = [];
+  let filterSelectedAssetTypeIds: number[] = [];
+  let filterClientTypeId: number | null = null;
+  let filterOrgSourceMode: 'client' | 'custom_field' = 'client';
+  let filterOrgCustomField = '';
+  let filterTenantType = '';
+  let filterOptionsLoading = false;
+  let filterOptionsError = '';
+  let filterSaving = false;
+  let filterSaved = '';
+  let filterIntegId: number | null = null;
+  let showFilterSettings = false;
+
+  let psaTabLoaded = false;
+  $: if (tab === 'psa' && psaSubTab === 'client_mapping' && !psaClientsLoading && psaClients.length === 0 && !psaClientsError) {
+    loadPsaClients();
+  }
+  $: if (tab === 'psa' && psaSubTab === 'asset_mapping' && !psaAssetsLoading && psaAssets.length === 0 && !psaAssetsError) {
+    loadPsaAssets();
+  }
+
+  async function loadPsaClients() {
+    psaClientsLoading = true; psaClientsError = ''; psaClients = [];
+    try {
+      const data = await apiFetch('/api/v1/assets/psa-clients');
+      if (data.error) { psaClientsError = data.error; return; }
+      psaClients = data.psa_clients ?? [];
+      psaOrgs    = data.orgs ?? [];
+      psaClientMappings = {};
+      for (const c of psaClients) {
+        psaClientMappings[c.psa_client_id] = c.mapped_org_id ?? '';
+      }
+    } catch (e: any) { psaClientsError = e.message ?? 'Failed to load PSA clients'; }
+    finally { psaClientsLoading = false; }
+  }
+
+  async function saveMappings() {
+    savingMappings = true; mappingsSaved = '';
+    try {
+      const body = Object.entries(psaClientMappings)
+        .filter(([, orgId]) => orgId !== '')
+        .map(([psa_client_id, org_id]) => ({ psa_client_id, org_id: Number(org_id) }));
+      const res = await apiFetch('/api/v1/assets/psa-clients/map', { method: 'POST', body: JSON.stringify(body) });
+      mappingsSaved = `Saved ${res.saved ?? 0} mapping${res.saved !== 1 ? 's' : ''}`;
+      await loadPsaClients();
+    } catch (e: any) { psaClientsError = e.message ?? 'Save failed'; }
+    finally { savingMappings = false; }
+  }
+
+  async function triggerPsaSync() {
+    psaSyncing = true; psaSyncMsg = '';
+    try {
+      const res = await apiFetch('/api/v1/integrations/psa/sync-devices', { method: 'POST' });
+      psaSyncMsg = `Sync complete — ${res.created ?? 0} created, ${res.updated ?? 0} updated`;
+    } catch (e: any) { psaSyncMsg = e.message ?? 'Sync failed'; }
+    finally { psaSyncing = false; }
+  }
+
+  async function loadPsaAssets() {
+    psaAssetsLoading = true; psaAssetsError = ''; psaAssets = [];
+    try {
+      const data = await apiFetch('/api/v1/assets/psa-assets');
+      if (data.error) { psaAssetsError = data.error; return; }
+      psaAssets = data.psa_assets ?? [];
+      psaDeviceOptions = data.devices ?? [];
+      psaAssetMappings = {};
+      for (const a of psaAssets) {
+        psaAssetMappings[a.source_id] = a.mapped_device_id ?? '';
+      }
+    } catch (e: any) { psaAssetsError = e.message ?? 'Failed to load PSA assets'; }
+    finally { psaAssetsLoading = false; }
+  }
+
+  async function saveAssetMappings() {
+    savingAssetMappings = true; assetMappingsSaved = '';
+    try {
+      const body = Object.entries(psaAssetMappings)
+        .filter(([, deviceId]) => deviceId !== '')
+        .map(([source_id, device_id]) => ({ source_id, device_id: Number(device_id) }));
+      const res = await apiFetch('/api/v1/assets/psa-assets/map', { method: 'POST', body: JSON.stringify(body) });
+      assetMappingsSaved = `Saved ${res.saved ?? 0} mapping${res.saved !== 1 ? 's' : ''}`;
+      await loadPsaAssets();
+    } catch (e: any) { psaAssetsError = e.message ?? 'Save failed'; }
+    finally { savingAssetMappings = false; }
+  }
+
+  async function createAndMapDevice(asset: PsaAsset, orgId: number) {
+    creatingDevice = { ...creatingDevice, [asset.source_id]: true };
+    try {
+      const res = await apiFetch('/api/v1/assets/psa-assets/create-device', {
+        method: 'POST',
+        body: JSON.stringify({ source_id: asset.source_id, name: asset.name, org_id: orgId }),
+      });
+      psaDeviceOptions = [...psaDeviceOptions, { id: res.device_id, name: res.name, org_id: orgId, org_name: asset.org_name, msp_name: '' }];
+      psaAssetMappings = { ...psaAssetMappings, [asset.source_id]: res.device_id };
+    } catch (e: any) { psaAssetsError = e.message ?? 'Failed to create device'; }
+    finally { creatingDevice = { ...creatingDevice, [asset.source_id]: false }; }
+  }
+
+  async function loadFilterOptions() {
+    filterOptionsLoading = true; filterOptionsError = ''; filterAssetTypes = []; filterClientTypes = [];
+    try {
+      const res = await apiFetch('/api/v1/integrations/psa/filter-options');
+      filterAssetTypes   = res.asset_types ?? [];
+      filterClientTypes  = res.client_types ?? [];
+      filterIntegId      = res.integration_id ?? null;
+      filterTenantType   = res.tenant_type ?? '';
+      const cfg = res.current_config ?? {};
+      filterClientTypeId        = cfg.client_type_id ?? null;
+      filterSelectedAssetTypeIds = cfg.asset_type_ids ?? [];
+      filterOrgSourceMode       = cfg.org_source_mode ?? 'client';
+      filterOrgCustomField      = cfg.org_custom_field ?? '';
+    } catch (e: any) { filterOptionsError = e.message ?? 'Failed to load filter options'; }
+    finally { filterOptionsLoading = false; }
+  }
+
+  function toggleAssetTypeId(id: number) {
+    if (filterSelectedAssetTypeIds.includes(id)) {
+      filterSelectedAssetTypeIds = filterSelectedAssetTypeIds.filter((x: number) => x !== id);
+    } else {
+      filterSelectedAssetTypeIds = [...filterSelectedAssetTypeIds, id];
+    }
+  }
+
+  async function saveFilterConfig() {
+    filterSaving = true; filterSaved = ''; filterOptionsError = '';
+    try {
+      await apiFetch('/api/v1/integrations/psa/filter-config', {
+        method: 'PATCH',
+        body: JSON.stringify({
+          client_type_id:   filterClientTypeId,
+          asset_type_ids:   filterSelectedAssetTypeIds,
+          org_source_mode:  filterOrgSourceMode,
+          org_custom_field: filterOrgCustomField,
+        }),
+      });
+      filterSaved = 'Settings saved.';
+    } catch (e: any) { filterOptionsError = e.message ?? 'Save failed'; }
+    finally { filterSaving = false; }
+  }
+
   // ── Mailbox & Rules state ─────────────────────────────────────────────────
   let mailboxSubTab: 'mailboxes' | 'rules' | 'processed' = 'mailboxes';
 
@@ -1316,144 +1555,499 @@
         </div>
       {/if}
 
-    <!-- ── PSA INTEGRATION (single-PSA wizard) ── -->
+    <!-- ── PSA INTEGRATION ── -->
     {:else if tab === 'psa'}
-      {#if loadingInteg}
-        <p class="text-gray-400 text-sm py-8 text-center">Loading…</p>
-      {:else}
-        {#if integError}
-          <div class="bg-red-50 border border-red-300 text-red-700 rounded p-3 text-sm mb-4">{integError}</div>
-        {/if}
+      <!-- PSA sub-tab bar -->
+      <div class="flex gap-1 border-b border-gray-200 mb-4">
+        <button on:click={() => psaSubTab = 'setup'}
+          class="px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors
+            {psaSubTab === 'setup' ? 'border-brand-600 text-brand-700' : 'border-transparent text-gray-500 hover:text-gray-700'}">
+          Setup
+        </button>
+        <button on:click={() => psaSubTab = 'client_mapping'}
+          class="px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors
+            {psaSubTab === 'client_mapping' ? 'border-brand-600 text-brand-700' : 'border-transparent text-gray-500 hover:text-gray-700'}">
+          Client Mapping
+        </button>
+        <button on:click={() => psaSubTab = 'asset_mapping'}
+          class="px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors
+            {psaSubTab === 'asset_mapping' ? 'border-brand-600 text-brand-700' : 'border-transparent text-gray-500 hover:text-gray-700'}">
+          Asset Sync
+        </button>
+      </div>
 
-        {@const psaInteg = integrations.find(i => i.category === 'psa')}
+      <!-- ── Setup sub-tab ── -->
+      {#if psaSubTab === 'setup'}
+        {#if loadingInteg}
+          <p class="text-gray-400 text-sm py-8 text-center">Loading…</p>
+        {:else}
+          {#if integError}
+            <div class="bg-red-50 border border-red-300 text-red-700 rounded p-3 text-sm mb-4">{integError}</div>
+          {/if}
 
-        {#if psaInteg}
-          <!-- ── Connected PSA card ── -->
-          {@const meta = providers[psaInteg.provider]}
-          {@const testRes = testResults[psaInteg.id]}
-          <div class="bg-white rounded-lg shadow border border-gray-100">
-            <div class="flex items-center gap-4 px-5 py-4">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 flex-wrap">
-                  <span class="font-semibold text-gray-800">{psaInteg.display_name}</span>
-                  <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Connected</span>
-                  <span class="text-xs text-gray-400 capitalize">{psaInteg.provider.replace('_', ' ')}</span>
+          {@const psaInteg = integrations.find(i => i.category === 'psa')}
+
+          {#if psaInteg}
+            <!-- ── Connected PSA card ── -->
+            {@const meta = providers[psaInteg.provider]}
+            {@const testRes = testResults[psaInteg.id]}
+            <div class="bg-white rounded-lg shadow border border-gray-100 max-w-2xl">
+              <div class="flex items-center gap-4 px-5 py-4">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="font-semibold text-gray-800">{psaInteg.display_name}</span>
+                    <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Connected</span>
+                    <span class="text-xs text-gray-400 capitalize">{psaInteg.provider.replace('_', ' ')}</span>
+                  </div>
+                  <div class="text-xs text-gray-500 mt-0.5">{psaInteg.base_url ?? '—'}</div>
                 </div>
-                <div class="text-xs text-gray-500 mt-0.5">{psaInteg.base_url ?? '—'}</div>
+                <div class="flex items-center gap-3 shrink-0 flex-wrap justify-end">
+                  <span class="text-xs px-2 py-0.5 rounded-full {statusBadge(psaInteg.last_test_status)} capitalize">
+                    {psaInteg.last_test_status}
+                  </span>
+                  <button class="text-xs text-blue-500 hover:text-blue-700"
+                    on:click={() => testInteg(psaInteg.id)} disabled={testingId === psaInteg.id}>
+                    {testingId === psaInteg.id ? 'Testing…' : 'Test Connection'}
+                  </button>
+                  <button class="text-xs text-gray-600 hover:text-gray-800"
+                    on:click={() => startEditInteg(psaInteg)}>Edit</button>
+                  <button class="text-xs text-red-500 hover:text-red-700"
+                    on:click={() => deleteInteg(psaInteg.id)}>Remove</button>
+                </div>
               </div>
-              <div class="flex items-center gap-3 shrink-0 flex-wrap justify-end">
-                <span class="text-xs px-2 py-0.5 rounded-full {statusBadge(psaInteg.last_test_status)} capitalize">
-                  {psaInteg.last_test_status}
-                </span>
-                <button class="text-xs text-blue-500 hover:text-blue-700"
-                  on:click={() => testInteg(psaInteg.id)} disabled={testingId === psaInteg.id}>
-                  {testingId === psaInteg.id ? 'Testing…' : 'Test Connection'}
-                </button>
-                <button class="text-xs text-gray-600 hover:text-gray-800"
-                  on:click={() => startEditInteg(psaInteg)}>Edit</button>
-                <button class="text-xs text-red-500 hover:text-red-700"
-                  on:click={() => deleteInteg(psaInteg.id)}>Remove</button>
-              </div>
+
+              {#if testRes}
+                <div class="border-t px-5 py-2 text-xs {testRes.status === 'ok' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}">
+                  {testRes.status === 'ok' ? '✓' : '✗'} {testRes.message}
+                </div>
+              {/if}
+
+              {#if editingIntegId === psaInteg.id}
+                <div class="border-t px-5 py-4 bg-blue-50">
+                  <h3 class="text-sm font-semibold text-gray-700 mb-3">Edit {meta?.label ?? psaInteg.display_name}</h3>
+                  <form class="grid grid-cols-2 gap-3" on:submit|preventDefault={saveEditInteg}>
+                    {#each (meta?.fields ?? []) as f}
+                      <div class="{f.key === 'base_url' ? 'col-span-2' : ''}">
+                        <label class="block text-xs text-gray-500 mb-1">{f.label}</label>
+                        {#if f.type === 'password'}
+                          <input type="password" bind:value={editIntegValues[f.key]}
+                            placeholder="leave blank to keep existing"
+                            class="w-full border rounded px-2 py-1.5 text-sm bg-white" />
+                        {:else}
+                          <input type="text" bind:value={editIntegValues[f.key]}
+                            class="w-full border rounded px-2 py-1.5 text-sm bg-white" />
+                        {/if}
+                      </div>
+                    {/each}
+                    {#if editIntegError}
+                      <div class="col-span-2 bg-red-50 border border-red-300 text-red-700 rounded p-2 text-xs">{editIntegError}</div>
+                    {/if}
+                    <div class="col-span-2 flex gap-2 justify-end pt-1">
+                      <button type="button" class="btn-secondary" on:click={() => editingIntegId = null}>Cancel</button>
+                      <button type="submit" class="btn-secondary" disabled={savingInteg}>{savingInteg ? 'Saving…' : 'Save Changes'}</button>
+                    </div>
+                  </form>
+                </div>
+              {/if}
             </div>
 
-            {#if testRes}
-              <div class="border-t px-5 py-2 text-xs {testRes.status === 'ok' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}">
-                {testRes.status === 'ok' ? '✓' : '✗'} {testRes.message}
-              </div>
-            {/if}
+            <p class="text-xs text-gray-400 mt-3">
+              PSA connected. Use <strong>Client Mapping</strong> to link PSA clients to BackupPulse orgs, then <strong>Asset Sync</strong> to pull devices.
+            </p>
 
-            {#if editingIntegId === psaInteg.id}
-              <div class="border-t px-5 py-4 bg-blue-50">
-                <h3 class="text-sm font-semibold text-gray-700 mb-3">Edit {meta?.label ?? psaInteg.display_name}</h3>
-                <form class="grid grid-cols-2 gap-3" on:submit|preventDefault={saveEditInteg}>
-                  {#each (meta?.fields ?? []) as f}
-                    <div class="{f.key === 'base_url' ? 'col-span-2' : ''}">
-                      <label class="block text-xs text-gray-500 mb-1">{f.label}</label>
+          {:else}
+            <!-- ── No PSA — setup wizard ── -->
+            <div class="bg-white rounded-lg shadow p-6 space-y-5 max-w-2xl">
+              <div>
+                <h2 class="text-base font-semibold text-gray-800">Connect your PSA</h2>
+                <p class="text-sm text-gray-500 mt-1">Select your PSA platform. Only one PSA can be active per tenant.</p>
+              </div>
+
+              <div class="max-w-xs">
+                <label for="psa-type" class="block text-xs font-medium text-gray-600 mb-1">PSA Type</label>
+                <select id="psa-type" bind:value={selectedProvider}
+                  on:change={() => { formValues = {}; saveIntegError = ''; }}
+                  class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white">
+                  <option value="">— Select PSA type —</option>
+                  {#each tabProviders as [provId, meta]}
+                    {@const blocked = isProviderBlocked(provId, 'psa')}
+                    <option value={provId} disabled={blocked}>{meta.label}{blocked ? ' (plan restriction)' : ''}</option>
+                  {/each}
+                </select>
+              </div>
+
+              {#if selectedProvider && isProviderBlocked(selectedProvider, 'psa')}
+                <div class="max-w-2xl bg-red-50 border border-red-300 text-red-700 rounded p-3 text-sm">
+                  {blockReason(selectedProvider, 'psa')}. Please upgrade your plan.
+                </div>
+              {/if}
+
+              {#if selectedProvider && providers[selectedProvider] && !isProviderBlocked(selectedProvider, 'psa')}
+                {@const meta = providers[selectedProvider]}
+                <form class="grid grid-cols-2 gap-4 border-t pt-5" on:submit|preventDefault={saveAddInteg}>
+                  <div class="col-span-2">
+                    <p class="text-xs text-gray-400">{meta.description}</p>
+                  </div>
+                  {#each meta.fields as f}
+                    <div class="{f.key === 'base_url' || meta.fields.length === 1 ? 'col-span-2' : ''}">
+                      <label class="block text-xs text-gray-600 font-medium mb-1">
+                        {f.label}{#if f.required}<span class="text-red-500 ml-0.5">*</span>{/if}
+                      </label>
                       {#if f.type === 'password'}
-                        <input type="password" bind:value={editIntegValues[f.key]}
-                          placeholder="leave blank to keep existing"
-                          class="w-full border rounded px-2 py-1.5 text-sm bg-white" />
+                        <input type="password" bind:value={formValues[f.key]} required={f.required}
+                          class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
                       {:else}
-                        <input type="text" bind:value={editIntegValues[f.key]}
-                          class="w-full border rounded px-2 py-1.5 text-sm bg-white" />
+                        <input type="text" bind:value={formValues[f.key]} required={f.required}
+                          placeholder={f.type === 'url' ? 'https://' : ''}
+                          class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
                       {/if}
                     </div>
                   {/each}
-                  {#if editIntegError}
-                    <div class="col-span-2 bg-red-50 border border-red-300 text-red-700 rounded p-2 text-xs">{editIntegError}</div>
+                  {#if saveIntegError}
+                    <div class="col-span-2 bg-red-50 border border-red-300 text-red-700 rounded p-2 text-xs">{saveIntegError}</div>
                   {/if}
                   <div class="col-span-2 flex gap-2 justify-end pt-1">
-                    <button type="button" class="btn-secondary" on:click={() => editingIntegId = null}>Cancel</button>
-                    <button type="submit" class="btn-secondary" disabled={savingInteg}>{savingInteg ? 'Saving…' : 'Save Changes'}</button>
+                    <button type="button" class="btn-secondary"
+                      on:click={() => { selectedProvider = ''; formValues = {}; }}>Cancel</button>
+                    <button type="submit" class="btn-secondary" disabled={savingInteg}>
+                      {savingInteg ? 'Connecting…' : 'Connect PSA'}
+                    </button>
                   </div>
                 </form>
+              {/if}
+            </div>
+          {/if}
+        {/if}
+
+      <!-- ── Client Mapping sub-tab ── -->
+      {:else if psaSubTab === 'client_mapping'}
+        <div class="max-w-4xl space-y-4">
+          <div class="bg-white rounded-lg shadow border border-gray-100">
+            <div class="flex items-center justify-between px-5 py-4 border-b">
+              <div>
+                <h2 class="text-base font-semibold text-gray-900">PSA Client → Org Mapping</h2>
+                <p class="text-xs text-gray-500 mt-0.5">
+                  Link each PSA client to a BackupPulse organisation. Use <strong>Create</strong> to add a new org on the fly.
+                </p>
+              </div>
+              <button class="btn-secondary text-sm" on:click={loadPsaClients} disabled={psaClientsLoading}>
+                {psaClientsLoading ? 'Loading…' : 'Refresh'}
+              </button>
+            </div>
+
+            {#if psaClientsError}
+              <div class="px-5 py-3 bg-red-50 border-b border-red-200 text-red-700 text-sm">{psaClientsError}</div>
+            {/if}
+            {#if mappingsSaved}
+              <div class="px-5 py-3 bg-green-50 border-b border-green-200 text-green-700 text-sm">{mappingsSaved}</div>
+            {/if}
+
+            {#if psaClientsLoading}
+              <div class="px-5 py-8 text-center text-gray-400 text-sm">Loading PSA clients…</div>
+            {:else if psaClients.length === 0 && !psaClientsError}
+              <div class="px-5 py-8 text-center text-gray-400 text-sm">
+                No PSA clients found. Make sure your PSA integration is connected and tested in the <button class="text-blue-500 underline" on:click={() => psaSubTab = 'setup'}>Setup tab</button>.
+              </div>
+            {:else}
+              <!-- Search + filter bar -->
+              <div class="px-4 py-3 border-b flex items-center gap-3 flex-wrap">
+                <div class="relative flex-1 min-w-48">
+                  <svg class="absolute left-2.5 top-2 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 0 5 11a6 6 0 0 0 12 0z"/>
+                  </svg>
+                  <input type="text" bind:value={psaSearch} placeholder="Search companies…"
+                    class="w-full pl-8 pr-3 py-1.5 border border-gray-300 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-300" />
+                </div>
+                <select bind:value={psaMappingFilter}
+                  class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-300">
+                  <option value="all">All ({psaClients.length})</option>
+                  <option value="mapped">Mapped ({psaClients.filter(c => psaClientMappings[c.psa_client_id]).length})</option>
+                  <option value="unmapped">Unmapped ({psaClients.filter(c => !psaClientMappings[c.psa_client_id]).length})</option>
+                </select>
+                <span class="text-xs text-gray-400 ml-auto">
+                  Showing {psaFilteredClients.length} of {psaClients.length}
+                </span>
+              </div>
+
+              <table class="min-w-full text-sm">
+                <thead>
+                  <tr class="border-b border-gray-100 bg-gray-50 text-xs text-gray-500 uppercase tracking-wide">
+                    <th class="px-4 py-3 text-left font-medium">PSA Client</th>
+                    <th class="px-4 py-3 text-left font-medium">BackupPulse Org</th>
+                    <th class="px-4 py-3 text-left font-medium w-28">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50">
+                  {#each psaPageClients as client (client.psa_client_id)}
+                    <tr class="hover:bg-gray-50">
+                      <td class="px-4 py-2.5 font-medium text-gray-800">{client.name}</td>
+                      <td class="px-4 py-2.5">
+                        <select bind:value={psaClientMappings[client.psa_client_id]}
+                          class="border border-gray-300 rounded px-2 py-1 text-sm bg-white w-full max-w-xs">
+                          <option value="">— Not mapped —</option>
+                          {#each psaOrgs as org}
+                            <option value={org.id}>{org.name}</option>
+                          {/each}
+                        </select>
+                      </td>
+                      <td class="px-4 py-2.5">
+                        {#if psaClientMappings[client.psa_client_id]}
+                          <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">Mapped</span>
+                        {:else}
+                          <div class="flex items-center gap-1.5">
+                            <span class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">Unmapped</span>
+                            <button
+                              class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 disabled:opacity-50"
+                              on:click={() => createAndMapOrg(client)}
+                              disabled={creatingOrg[client.psa_client_id]}>
+                              {creatingOrg[client.psa_client_id] ? '…' : 'Create'}
+                            </button>
+                          </div>
+                        {/if}
+                      </td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+
+              <!-- Pagination + save row -->
+              <div class="px-5 py-3 border-t flex items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <button class="btn-secondary text-xs px-2 py-1" on:click={() => psaPage--} disabled={psaPage <= 1}>‹ Prev</button>
+                  <span class="text-xs text-gray-500">Page {psaPage} of {psaTotalPages}</span>
+                  <button class="btn-secondary text-xs px-2 py-1" on:click={() => psaPage++} disabled={psaPage >= psaTotalPages}>Next ›</button>
+                </div>
+                <button class="btn-secondary" on:click={saveMappings} disabled={savingMappings}>
+                  {savingMappings ? 'Saving…' : 'Save Mappings'}
+                </button>
               </div>
             {/if}
           </div>
+        </div>
 
-        {:else}
-          <!-- ── No PSA — setup wizard ── -->
-          <div class="bg-white rounded-lg shadow p-6 space-y-5 max-w-2xl">
+      <!-- ── Asset Mapping sub-tab ── -->
+      {:else if psaSubTab === 'asset_mapping'}
+        <div class="space-y-4">
+
+          <!-- Header row -->
+          <div class="flex items-center justify-between">
             <div>
-              <h2 class="text-base font-semibold text-gray-800">Connect your PSA</h2>
-              <p class="text-sm text-gray-500 mt-1">Select your PSA platform. Only one PSA can be active per tenant.</p>
+              <h2 class="text-base font-semibold text-gray-900">PSA Asset Mapping</h2>
+              <p class="text-xs text-gray-500 mt-0.5">
+                Map PSA assets to BackupPulse devices. Changes take effect immediately when you save.
+              </p>
             </div>
-
-            <div class="max-w-xs">
-              <label for="psa-type" class="block text-xs font-medium text-gray-600 mb-1">PSA Type</label>
-              <select id="psa-type" bind:value={selectedProvider}
-                on:change={() => { formValues = {}; saveIntegError = ''; }}
-                class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white">
-                <option value="">— Select PSA type —</option>
-                {#each tabProviders as [provId, meta]}
-                  {@const blocked = isProviderBlocked(provId, 'psa')}
-                  <option value={provId} disabled={blocked}>{meta.label}{blocked ? ' (plan restriction)' : ''}</option>
-                {/each}
-              </select>
+            <div class="flex items-center gap-2">
+              <button class="btn-secondary text-sm" on:click={loadPsaAssets} disabled={psaAssetsLoading}>
+                {psaAssetsLoading ? 'Loading…' : 'Refresh'}
+              </button>
+              <!-- Filter settings toggle -->
+              <button
+                class="px-3 py-1.5 text-xs border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50"
+                on:click={() => { showFilterSettings = !showFilterSettings; if (showFilterSettings && filterAssetTypes.length === 0) loadFilterOptions(); }}>
+                Filter Settings {showFilterSettings ? '▲' : '▼'}
+              </button>
             </div>
+          </div>
 
-            <!-- PSA plan restriction notice -->
-            {#if selectedProvider && isProviderBlocked(selectedProvider, 'psa')}
-              <div class="max-w-2xl bg-red-50 border border-red-300 text-red-700 rounded p-3 text-sm">
-                {blockReason(selectedProvider, 'psa')}. Please upgrade your plan.
+          {#if psaAssetsError}
+            <div class="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-red-700 text-sm">{psaAssetsError}</div>
+          {/if}
+          {#if assetMappingsSaved}
+            <div class="bg-green-50 border border-green-200 rounded-lg px-4 py-3 text-green-700 text-sm">{assetMappingsSaved}</div>
+          {/if}
+
+          <!-- Collapsible filter settings -->
+          {#if showFilterSettings}
+            <div class="bg-white rounded-lg shadow border border-gray-100">
+              <div class="px-5 py-3 border-b flex items-center justify-between">
+                <h3 class="text-sm font-semibold text-gray-800">Filter Settings</h3>
+                {#if filterOptionsError}
+                  <span class="text-xs text-red-600">{filterOptionsError}</span>
+                {/if}
+                {#if filterSaved}
+                  <span class="text-xs text-green-600">{filterSaved}</span>
+                {/if}
               </div>
-            {/if}
-
-            {#if selectedProvider && providers[selectedProvider] && !isProviderBlocked(selectedProvider, 'psa')}
-              {@const meta = providers[selectedProvider]}
-              <form class="grid grid-cols-2 gap-4 border-t pt-5" on:submit|preventDefault={saveAddInteg}>
-                <div class="col-span-2">
-                  <p class="text-xs text-gray-400">{meta.description}</p>
-                </div>
-                {#each meta.fields as f}
-                  <div class="{f.key === 'base_url' || meta.fields.length === 1 ? 'col-span-2' : ''}">
-                    <label class="block text-xs text-gray-600 font-medium mb-1">
-                      {f.label}{#if f.required}<span class="text-red-500 ml-0.5">*</span>{/if}
-                    </label>
-                    {#if f.type === 'password'}
-                      <input type="password" bind:value={formValues[f.key]} required={f.required}
-                        class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
-                    {:else}
-                      <input type="text" bind:value={formValues[f.key]} required={f.required}
-                        placeholder={f.type === 'url' ? 'https://' : ''}
-                        class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm" />
+              {#if filterOptionsLoading}
+                <div class="px-5 py-6 text-center text-gray-400 text-sm">Loading options…</div>
+              {:else}
+                <div class="px-5 py-4 space-y-4">
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-semibold text-gray-700 mb-1">Client Type</label>
+                      {#if filterClientTypes.length > 0}
+                        <select bind:value={filterClientTypeId} class="border border-gray-300 rounded px-3 py-1.5 text-sm bg-white w-full">
+                          {#each filterClientTypes as ct}<option value={parseInt(ct.id)}>{ct.name}</option>{/each}
+                        </select>
+                      {:else}
+                        <input type="number" bind:value={filterClientTypeId} min="1"
+                          class="border border-gray-300 rounded px-3 py-1.5 text-sm w-full" placeholder="Type ID (e.g. 1)" />
+                      {/if}
+                    </div>
+                    {#if filterTenantType === 'master_msp'}
+                      <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Org Mapping Mode</label>
+                        <select bind:value={filterOrgSourceMode} class="border border-gray-300 rounded px-3 py-1.5 text-sm bg-white w-full">
+                          <option value="client">PSA Client (standard)</option>
+                          <option value="custom_field">Custom Field</option>
+                        </select>
+                        {#if filterOrgSourceMode === 'custom_field'}
+                          <input type="text" bind:value={filterOrgCustomField} placeholder="Field name e.g. MSP-Client"
+                            class="mt-1 border border-gray-300 rounded px-3 py-1.5 text-sm w-full" />
+                        {/if}
+                      </div>
                     {/if}
                   </div>
-                {/each}
-                {#if saveIntegError}
-                  <div class="col-span-2 bg-red-50 border border-red-300 text-red-700 rounded p-2 text-xs">{saveIntegError}</div>
-                {/if}
-                <div class="col-span-2 flex gap-2 justify-end pt-1">
-                  <button type="button" class="btn-secondary"
-                    on:click={() => { selectedProvider = ''; formValues = {}; }}>Cancel</button>
-                  <button type="submit" class="btn-secondary" disabled={savingInteg}>
-                    {savingInteg ? 'Connecting…' : 'Connect PSA'}
-                  </button>
+                  {#if filterAssetTypes.length > 0}
+                    <div>
+                      <label class="block text-xs font-semibold text-gray-700 mb-1">Asset Types</label>
+                      <div class="grid grid-cols-3 gap-1 max-h-32 overflow-y-auto border border-gray-100 rounded p-2">
+                        {#each filterAssetTypes as at}
+                          {@const atId = parseInt(at.id)}
+                          <label class="flex items-center gap-1.5 text-xs text-gray-700 cursor-pointer hover:bg-gray-50 rounded px-1 py-0.5">
+                            <input type="checkbox" checked={filterSelectedAssetTypeIds.includes(atId)}
+                              on:change={() => toggleAssetTypeId(atId)} class="rounded border-gray-300" />
+                            {at.name}
+                          </label>
+                        {/each}
+                      </div>
+                    </div>
+                  {/if}
+                  <div class="flex justify-end">
+                    <button class="btn-secondary text-xs" on:click={saveFilterConfig} disabled={filterSaving}>
+                      {filterSaving ? 'Saving…' : 'Save Filter Settings'}
+                    </button>
+                  </div>
                 </div>
-              </form>
+              {/if}
+            </div>
+          {/if}
+
+          <!-- Search / filter bar -->
+          <div class="flex flex-wrap items-center gap-2">
+            <input type="text" bind:value={assetSearch} placeholder="Search assets or clients…"
+              class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm w-56 focus:outline-none focus:ring-2 focus:ring-blue-300" />
+
+            <select bind:value={assetClientFilter}
+              class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm bg-white">
+              <option value="">All clients / orgs</option>
+              {#each assetClientOptions as name}
+                <option value={name}>{name}</option>
+              {/each}
+            </select>
+
+            {#each (['all', 'mapped', 'unmapped'] as const) as f}
+              <button
+                class="px-3 py-1.5 text-xs rounded-full border transition-colors
+                  {assetMappingFilter === f ? 'bg-blue-600 text-white border-blue-600' : 'border-gray-300 text-gray-600 hover:bg-gray-50'}"
+                on:click={() => assetMappingFilter = f}>
+                {f.charAt(0).toUpperCase() + f.slice(1)}
+              </button>
+            {/each}
+
+            <span class="ml-auto text-xs text-gray-400">
+              {assetFiltered.length} of {psaAssets.length} asset{psaAssets.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+
+          <!-- Mapping table -->
+          <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden">
+            {#if psaAssetsLoading}
+              <div class="py-16 text-center text-gray-400 text-sm">Loading PSA assets…</div>
+            {:else if psaAssets.length === 0 && !psaAssetsError}
+              <div class="py-16 text-center text-gray-400 text-sm">No assets returned from PSA. Check your integration and filter settings.</div>
+            {:else}
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-gray-50 border-b border-gray-200 text-xs text-gray-500 uppercase tracking-wide">
+                    <th class="px-4 py-3 text-left font-medium">PSA Asset</th>
+                    <th class="px-4 py-3 text-left font-medium">Type</th>
+                    <th class="px-4 py-3 text-left font-medium">Client / Org</th>
+                    <th class="px-4 py-3 text-left font-medium">BackupPulse Device</th>
+                    <th class="px-4 py-3 text-center font-medium">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  {#each assetPageItems as asset (asset.source_id)}
+                    {@const mapped = !!psaAssetMappings[asset.source_id]}
+                    <tr class="hover:bg-gray-50 transition-colors">
+                      <!-- PSA Asset name -->
+                      <td class="px-4 py-3">
+                        <p class="font-medium text-gray-900">{asset.name}</p>
+                        {#if asset.serial}
+                          <p class="text-xs text-gray-400">S/N: {asset.serial}</p>
+                        {/if}
+                      </td>
+
+                      <!-- Device type -->
+                      <td class="px-4 py-3 text-gray-600 text-xs">{asset.device_type ?? '—'}</td>
+
+                      <!-- Client / Org -->
+                      <td class="px-4 py-3 text-gray-700 text-xs">{asset.org_name || '—'}</td>
+
+                      <!-- BackupPulse Device dropdown -->
+                      <td class="px-4 py-3">
+                        <div class="flex items-center gap-2">
+                          <select
+                            bind:value={psaAssetMappings[asset.source_id]}
+                            class="border border-gray-300 rounded px-2 py-1 text-sm bg-white flex-1 min-w-0 max-w-xs">
+                            <option value="">— Select device —</option>
+                            {#each groupedDevices as [orgName, devs]}
+                              <optgroup label={orgName}>
+                                {#each devs as d}
+                                  <option value={d.id}>{d.name}</option>
+                                {/each}
+                              </optgroup>
+                            {/each}
+                          </select>
+                          {#if !mapped}
+                            {@const matchedOrg = psaDeviceOptions.find(d => d.org_name === asset.org_name)}
+                            <button
+                              class="shrink-0 px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded border border-gray-300 disabled:opacity-50"
+                              disabled={!!creatingDevice[asset.source_id] || !asset.org_name}
+                              title={asset.org_name ? 'Create new device in this org' : 'No org matched — map client first'}
+                              on:click={async () => {
+                                const orgRow = psaDeviceOptions.find(d => d.org_name === asset.org_name);
+                                if (!orgRow) {
+                                  psaAssetsError = `No BackupPulse org found for "${asset.org_name}". Map this client in the Client Mapping tab first.`;
+                                  return;
+                                }
+                                await createAndMapDevice(asset, orgRow.org_id);
+                              }}>
+                              {creatingDevice[asset.source_id] ? '…' : 'Create'}
+                            </button>
+                          {/if}
+                        </div>
+                      </td>
+
+                      <!-- Status pill -->
+                      <td class="px-4 py-3 text-center">
+                        {#if mapped}
+                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Mapped</span>
+                        {:else}
+                          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500">Unmapped</span>
+                        {/if}
+                      </td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+
+              <!-- Pagination + Save -->
+              <div class="flex items-center justify-between px-4 py-3 border-t border-gray-100 bg-gray-50">
+                <div class="flex items-center gap-2">
+                  <button class="btn-secondary text-xs py-1 px-3" on:click={() => assetPage--} disabled={assetPage === 1}>← Prev</button>
+                  <span class="text-xs text-gray-500">Page {assetPage} of {assetTotalPages}</span>
+                  <button class="btn-secondary text-xs py-1 px-3" on:click={() => assetPage++} disabled={assetPage === assetTotalPages}>Next →</button>
+                </div>
+                <button class="btn-secondary" on:click={saveAssetMappings} disabled={savingAssetMappings}>
+                  {savingAssetMappings ? 'Saving…' : 'Save Mappings'}
+                </button>
+              </div>
             {/if}
           </div>
-        {/if}
+        </div>
       {/if}
 
     <!-- ══════════════════════════════ MAILBOX TAB ══════════════════════════ -->

@@ -14,7 +14,143 @@
   });
 
   // ── Tabs ──────────────────────────────────────────────────────────────────
-  let tab: 'ondemand' | 'scheduled' = 'ondemand';
+  let tab: 'ondemand' | 'scheduled' | 'ai' = 'ondemand';
+
+  // ── AI Reports ────────────────────────────────────────────────────────────
+  let aiDays = 30;
+  let aiOrgId = '';
+  let aiPrompt = '';
+  let aiLoading = false;
+  let aiStreaming = false;
+  let aiError = '';
+  let aiPdfLoading = false;
+
+  type AiMessage = { role: 'user' | 'assistant'; text: string; prompt?: string };
+  let aiMessages: AiMessage[] = [];
+  let aiMsgPdfLoading: Record<number, boolean> = {};
+
+  const SUGGESTED_PROMPTS = [
+    'Write an executive summary report for senior management',
+    'Which clients need immediate attention and why?',
+    'List all devices that have not been backed up recently',
+    'What are the top recurring backup errors and their root causes?',
+    'How is our SureRestore compliance this month?',
+    'Compare backup success rates across all clients',
+    'Summarise all retention and storage alerts',
+    'Which devices are failing most frequently?',
+  ];
+
+  async function sendAiPrompt(promptOverride?: string) {
+    const prompt = (promptOverride ?? aiPrompt).trim();
+    if (!prompt || aiLoading) return;
+
+    aiLoading = true;
+    aiStreaming = true;
+    aiError = '';
+    aiPrompt = '';
+
+    const userMsg: AiMessage = { role: 'user', text: prompt };
+    const assistantMsg: AiMessage = { role: 'assistant', text: '', prompt };
+    aiMessages = [...aiMessages, userMsg, assistantMsg];
+    const idx = aiMessages.length - 1;
+
+    try {
+      const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8000';
+      const tok = localStorage.getItem('bp_token');
+      const res = await fetch(`${BASE}/api/v1/reports/ai-chat`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${tok}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt, days: aiDays, org_id: aiOrgId ? Number(aiOrgId) : null }),
+      });
+
+      if (!res.ok) {
+        const txt = await res.text();
+        throw new Error(txt || `HTTP ${res.status}`);
+      }
+
+      const reader = res.body!.getReader();
+      const decoder = new TextDecoder();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value, { stream: true });
+        aiMessages[idx] = { ...aiMessages[idx], text: aiMessages[idx].text + chunk };
+        aiMessages = [...aiMessages]; // trigger reactivity
+      }
+    } catch (e: unknown) {
+      aiError = e instanceof Error ? e.message : String(e);
+      aiMessages = aiMessages.slice(0, -2); // remove the failed pair
+    } finally {
+      aiLoading = false;
+      aiStreaming = false;
+    }
+  }
+
+  function handleAiKey(e: KeyboardEvent) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendAiPrompt();
+    }
+  }
+
+  async function downloadAiReport() {
+    aiPdfLoading = true;
+    try {
+      const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8000';
+      const tok = localStorage.getItem('bp_token');
+      const qs = new URLSearchParams({ days: String(aiDays) });
+      if (aiOrgId) qs.set('org_id', aiOrgId);
+      const res = await fetch(`${BASE}/api/v1/reports/ai-executive?${qs}`, {
+        headers: { Authorization: `Bearer ${tok}` },
+      });
+      if (!res.ok) throw new Error(await res.text() || `HTTP ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `executive_report_${new Date().toISOString().slice(0, 10)}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e: unknown) {
+      aiError = e instanceof Error ? e.message : String(e);
+    } finally {
+      aiPdfLoading = false;
+    }
+  }
+
+  async function downloadChatPdf(msgIdx: number, msg: AiMessage) {
+    if (!msg.text || !msg.prompt) return;
+    aiMsgPdfLoading = { ...aiMsgPdfLoading, [msgIdx]: true };
+    try {
+      const BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8000';
+      const tok = localStorage.getItem('bp_token');
+      const res = await fetch(`${BASE}/api/v1/reports/ai-chat-pdf`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${tok}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: msg.prompt,
+          response: msg.text,
+          days: aiDays,
+          org_id: aiOrgId ? Number(aiOrgId) : null,
+        }),
+      });
+      if (!res.ok) throw new Error(await res.text() || `HTTP ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `ai_report_${new Date().toISOString().slice(0, 10)}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e: unknown) {
+      aiError = e instanceof Error ? e.message : String(e);
+    } finally {
+      aiMsgPdfLoading = { ...aiMsgPdfLoading, [msgIdx]: false };
+    }
+  }
 
   // ── Report definitions ───────────────────────────────────────────────────
   const REPORTS = {
@@ -193,6 +329,14 @@
   let pLogoPreview = '';
   let panelError = '';
 
+  // Auto-scroll chat to bottom when messages update
+  $: if (aiMessages) {
+    setTimeout(() => {
+      const el = document.getElementById('ai-chat-scroll');
+      if (el) el.scrollTop = el.scrollHeight;
+    }, 10);
+  }
+
   function handleLogoFile(e: Event) {
     const file = (e.target as HTMLInputElement).files?.[0];
     if (!file) return;
@@ -226,6 +370,15 @@
     const em = total % 60;
     return (String(eh).padStart(2, '0') + ':' + String(em).padStart(2, '0'));
   })();
+
+  async function loadTargetsOnce() {
+    if (targetsLoaded) return;
+    try {
+      reportTargets = await api.reportTargets();
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   async function loadScheduled() {
     if (targetsLoaded) return;
@@ -432,6 +585,10 @@
       style="padding-bottom:8px; font-size:14px; font-weight:500; border-bottom:2px solid {tab === 'scheduled' ? '#0094ba' : 'transparent'}; color:{tab === 'scheduled' ? '#00adda' : '#9ca3af'}; background:none; border-top:none; border-left:none; border-right:none; cursor:pointer;">
       Scheduled Reports
     </button>
+    <button on:click={() => { tab = 'ai'; aiError = ''; loadTargetsOnce(); }}
+      style="padding-bottom:8px; font-size:14px; font-weight:500; border-bottom:2px solid {tab === 'ai' ? '#0094ba' : 'transparent'}; color:{tab === 'ai' ? '#00adda' : '#9ca3af'}; background:none; border-top:none; border-left:none; border-right:none; cursor:pointer;">
+      AI Reports
+    </button>
   </div>
 
   {#if tab === 'ondemand'}
@@ -568,6 +725,163 @@
         {/if}
       </div>
     {/if}
+
+  {:else if tab === 'ai'}
+    <!-- ── AI Reports ────────────────────────────────────────────────────── -->
+    <div style="display:grid; grid-template-columns:280px 1fr; gap:20px; height:calc(100vh - 220px); min-height:500px;">
+
+      <!-- Left sidebar: context controls + suggested prompts -->
+      <div style="display:flex; flex-direction:column; gap:12px; overflow-y:auto;">
+
+        <!-- Context controls -->
+        <div style="background:#23233a; border:1px solid #374151; border-radius:10px; padding:16px;">
+          <div style="font-size:12px; font-weight:600; color:#9ca3af; text-transform:uppercase; letter-spacing:.05em; margin-bottom:12px;">Data Context</div>
+
+          <div style="margin-bottom:10px;">
+            <label style="display:block; font-size:11px; color:#6b7280; margin-bottom:4px;">Period</label>
+            <select bind:value={aiDays}
+              style="width:100%; background:#1e1e35; border:1px solid #374151; color:#d1d5db; border-radius:6px; padding:7px 10px; font-size:13px;">
+              <option value={7}>Last 7 days</option>
+              <option value={14}>Last 14 days</option>
+              <option value={30}>Last 30 days</option>
+              <option value={60}>Last 60 days</option>
+              <option value={90}>Last 90 days</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:12px;">
+            <label style="display:block; font-size:11px; color:#6b7280; margin-bottom:4px;">
+              Scope
+            </label>
+            <select bind:value={aiOrgId}
+              style="width:100%; background:#1e1e35; border:1px solid #374151; color:#d1d5db; border-radius:6px; padding:7px 10px; font-size:13px;">
+              <option value="">All {$auth?.tenant_type === 'master_msp' ? 'MSPs' : 'Clients'}</option>
+              {#each reportTargets as t}
+                <option value={String(t.id)}>{t.name}</option>
+              {/each}
+            </select>
+          </div>
+
+          <button
+            on:click={downloadAiReport}
+            disabled={aiPdfLoading}
+            style="width:100%; background:#1e3a4a; color:#38bdf8; border:1px solid #164e63; border-radius:6px; padding:8px 12px; font-size:12px; font-weight:600; cursor:{aiPdfLoading ? 'wait' : 'pointer'}; display:flex; align-items:center; justify-content:center; gap:6px;">
+            {#if aiPdfLoading}
+              <span style="display:inline-block; width:12px; height:12px; border:2px solid #38bdf8; border-top-color:transparent; border-radius:50%; animation:spin 0.7s linear infinite;"></span>
+              Generating…
+            {:else}
+              ↓ Download PDF Report
+            {/if}
+          </button>
+        </div>
+
+        <!-- Suggested prompts -->
+        <div style="background:#23233a; border:1px solid #374151; border-radius:10px; padding:16px; flex:1;">
+          <div style="font-size:12px; font-weight:600; color:#9ca3af; text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px;">Suggested Prompts</div>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            {#each SUGGESTED_PROMPTS as sp}
+              <button
+                on:click={() => sendAiPrompt(sp)}
+                disabled={aiLoading}
+                style="text-align:left; background:#1e1e35; border:1px solid #2d2d45; color:#9ca3af; border-radius:6px; padding:8px 10px; font-size:12px; line-height:1.4; cursor:{aiLoading ? 'not-allowed' : 'pointer'}; transition:all 0.15s;"
+                on:mouseenter={e => { if (!aiLoading) { const t = e.currentTarget; t.style.borderColor='#0094ba'; t.style.color='#d1d5db'; } }}
+                on:mouseleave={e => { const t = e.currentTarget; t.style.borderColor='#2d2d45'; t.style.color='#9ca3af'; }}>
+                {sp}
+              </button>
+            {/each}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: chat area -->
+      <div style="display:flex; flex-direction:column; background:#23233a; border:1px solid #374151; border-radius:10px; overflow:hidden;">
+
+        <!-- Messages -->
+        <div style="flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:16px;" id="ai-chat-scroll">
+
+          {#if aiMessages.length === 0}
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#6b7280; text-align:center; padding:40px;">
+              <div style="font-size:32px; margin-bottom:12px;">💬</div>
+              <div style="font-size:16px; font-weight:600; color:#9ca3af; margin-bottom:8px;">Ask anything about your backup operations</div>
+              <div style="font-size:13px; line-height:1.6; max-width:400px;">
+                I have access to all your backup jobs, device status, client health, SureRestore test results, retention policies, and connector health. Use a suggested prompt or type your own question.
+              </div>
+            </div>
+          {:else}
+            {#each aiMessages as msg, i}
+              {#if msg.role === 'user'}
+                <div style="display:flex; justify-content:flex-end;">
+                  <div style="max-width:75%; background:#0f4c75; color:#e0f2fe; border-radius:12px 12px 2px 12px; padding:12px 16px; font-size:14px; line-height:1.5; white-space:pre-wrap;">
+                    {msg.text}
+                  </div>
+                </div>
+              {:else}
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <div style="width:28px; height:28px; border-radius:50%; background:#0f172a; border:1px solid #374151; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; margin-top:2px;">🤖</div>
+                  <div style="flex:1; min-width:0;">
+                    <div style="background:#1e1e35; border:1px solid #2d2d45; border-radius:2px 12px 12px 12px; padding:14px 16px; font-size:14px; line-height:1.7; color:#d1d5db; white-space:pre-wrap; word-break:break-word;">
+                      {#if msg.text}
+                        {msg.text}
+                      {:else if aiStreaming && i === aiMessages.length - 1}
+                        <span style="display:inline-flex; gap:4px; align-items:center;">
+                          <span style="width:6px; height:6px; background:#0094ba; border-radius:50%; animation:pulse 1s infinite;"></span>
+                          <span style="width:6px; height:6px; background:#0094ba; border-radius:50%; animation:pulse 1s 0.2s infinite;"></span>
+                          <span style="width:6px; height:6px; background:#0094ba; border-radius:50%; animation:pulse 1s 0.4s infinite;"></span>
+                        </span>
+                      {/if}
+                    </div>
+                    {#if msg.text && !(aiStreaming && i === aiMessages.length - 1)}
+                      <div style="display:flex; justify-content:flex-end; margin-top:6px;">
+                        <button
+                          on:click={() => downloadChatPdf(i, msg)}
+                          disabled={!!aiMsgPdfLoading[i]}
+                          style="background:#1a3a2a; color:#4ade80; border:1px solid #166534; border-radius:6px; padding:5px 12px; font-size:12px; font-weight:600; cursor:{aiMsgPdfLoading[i] ? 'wait' : 'pointer'}; display:flex; align-items:center; gap:6px;">
+                          {#if aiMsgPdfLoading[i]}
+                            <span style="display:inline-block; width:11px; height:11px; border:2px solid #4ade80; border-top-color:transparent; border-radius:50%; animation:spin 0.7s linear infinite;"></span>
+                            Generating PDF…
+                          {:else}
+                            ↓ Download as PDF
+                          {/if}
+                        </button>
+                      </div>
+                    {/if}
+                  </div>
+                </div>
+              {/if}
+            {/each}
+          {/if}
+        </div>
+
+        <!-- Error -->
+        {#if aiError}
+          <div style="margin:0 16px 8px; background:#3a1e1e; border:1px solid #f87171; color:#f87171; border-radius:6px; padding:8px 12px; font-size:12px;">
+            {aiError}
+          </div>
+        {/if}
+
+        <!-- Input -->
+        <div style="border-top:1px solid #374151; padding:14px 16px; display:flex; gap:10px; align-items:flex-end;">
+          <textarea
+            bind:value={aiPrompt}
+            on:keydown={handleAiKey}
+            placeholder="Ask a question about your backup operations… (Enter to send, Shift+Enter for new line)"
+            rows="2"
+            disabled={aiLoading}
+            style="flex:1; background:#1e1e35; border:1px solid #374151; color:#d1d5db; border-radius:8px; padding:10px 14px; font-size:14px; resize:none; outline:none; line-height:1.5; font-family:inherit;"
+          ></textarea>
+          <button
+            on:click={() => sendAiPrompt()}
+            disabled={aiLoading || !aiPrompt.trim()}
+            style="background:{aiLoading || !aiPrompt.trim() ? '#374151' : '#0094ba'}; color:#fff; border:none; border-radius:8px; padding:10px 18px; font-size:14px; font-weight:600; cursor:{aiLoading || !aiPrompt.trim() ? 'not-allowed' : 'pointer'}; white-space:nowrap; display:flex; align-items:center; gap:8px; height:44px; transition:background 0.15s;">
+            {#if aiLoading}
+              <span style="display:inline-block; width:14px; height:14px; border:2px solid #9ca3af; border-top-color:#fff; border-radius:50%; animation:spin 0.7s linear infinite;"></span>
+            {:else}
+              Send
+            {/if}
+          </button>
+        </div>
+      </div>
+    </div>
 
   {:else}
     <!-- ── Scheduled Reports ─────────────────────────────────────────────── -->
@@ -906,3 +1220,13 @@
     {/if}
   {/if}
 </div>
+
+<style>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+</style>
