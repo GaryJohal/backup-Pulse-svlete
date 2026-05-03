@@ -24,7 +24,8 @@
   "dependencies": {
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
-    "lucide-svelte": "^0.394.0"
+    "lucide-svelte": "^0.394.0",
+    "marked": "^18.0.3"
   },
   "type": "module"
 }

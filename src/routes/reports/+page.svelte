@@ -4,6 +4,13 @@
   import { auth } from '$lib/auth';
   import { api } from '$lib/api';
   import type { ScheduledReport, ReportTarget } from '$lib/api';
+  import { marked } from 'marked';
+
+  // Configure marked: safe renderer, no mangling
+  marked.setOptions({ gfm: true, breaks: true });
+  function renderMd(text: string): string {
+    return marked.parse(text) as string;
+  }
 
   onMount(() => {
     const flags = $auth?.feature_flags ?? {};
@@ -819,9 +826,9 @@
                 <div style="display:flex; gap:10px; align-items:flex-start;">
                   <div style="width:28px; height:28px; border-radius:50%; background:#0f172a; border:1px solid #374151; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; margin-top:2px;">🤖</div>
                   <div style="flex:1; min-width:0;">
-                    <div style="background:#1e1e35; border:1px solid #2d2d45; border-radius:2px 12px 12px 12px; padding:14px 16px; font-size:14px; line-height:1.7; color:#d1d5db; white-space:pre-wrap; word-break:break-word;">
+                    <div class="ai-md" style="background:#1e1e35; border:1px solid #2d2d45; border-radius:2px 12px 12px 12px; padding:14px 16px; font-size:14px; line-height:1.7; color:#d1d5db; word-break:break-word;">
                       {#if msg.text}
-                        {msg.text}
+                        {@html renderMd(msg.text)}
                       {:else if aiStreaming && i === aiMessages.length - 1}
                         <span style="display:inline-flex; gap:4px; align-items:center;">
                           <span style="width:6px; height:6px; background:#0094ba; border-radius:50%; animation:pulse 1s infinite;"></span>

@@ -7,6 +7,8 @@
   let stats: DashboardStats | null = null;
   let trendStats: DashboardStats | null = null;
   let storageAlerts: StorageAlert[] = [];
+  let showAllAlerts = false;
+  let storageThreshold = 85;
   let error = '';
   let syncing = false;
   let resetting = false;
@@ -81,7 +83,7 @@
       [stats, trendStats, storageAlerts] = await Promise.all([
         api.stats(dateParams()),
         api.stats(),
-        api.storageAlerts(),
+        api.storageAlerts(storageThreshold),
       ]);
       selectedOrg = null;
       subClients = [];
@@ -315,7 +317,7 @@
       <div class="stat-card border-l-4 {storageAlerts.length > 0 ? 'border-amber-400' : 'border-gray-200'}">
         <span class="text-sm text-gray-500">Storage Alerts</span>
         <span class="text-3xl font-bold {storageAlerts.length > 0 ? 'text-amber-500' : 'text-gray-400'}">{storageAlerts.length}</span>
-        <span class="text-xs {storageAlerts.length > 0 ? 'text-amber-500' : 'text-gray-400'}">{storageAlerts.length > 0 ? 'device issues' : 'all clear'}</span>
+        <span class="text-xs {storageAlerts.length > 0 ? 'text-amber-500' : 'text-gray-400'}">{storageAlerts.length > 0 ? 'client' + (storageAlerts.length !== 1 ? 's' : '') + ' affected' : 'all clear'}</span>
       </div>
     </div>
 
@@ -348,40 +350,75 @@
       </div>
     </div>
 
-    <!-- Storage Alerts detail — only shown when there are alerts -->
-    {#if storageAlerts.length > 0}
+    <!-- Storage Alerts detail — grouped by client, max 10 rows with expand -->
+    {#if storageAlerts.length > 0 || true}
     <div class="bg-amber-50 border border-amber-200 rounded-lg shadow p-4">
-      <div class="flex items-center gap-2 mb-2">
+      <div class="flex items-center gap-2 mb-2 flex-wrap">
         <span class="text-amber-600 font-semibold text-sm">⚠ Storage Alerts</span>
+        {#if storageAlerts.length > 0}
         <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-amber-200 text-amber-800">
-          {storageAlerts.length} device{storageAlerts.length !== 1 ? 's' : ''}
+          {storageAlerts.length} client{storageAlerts.length !== 1 ? 's' : ''}
         </span>
-        <span class="text-xs text-amber-600">— backup failures with storage-related errors</span>
+        <span class="text-xs text-amber-600">
+          — {storageAlerts.reduce((s, a) => s + a.device_count, 0)} device{storageAlerts.reduce((s, a) => s + a.device_count, 0) !== 1 ? 's' : ''} affected
+        </span>
+        {:else}
+        <span class="text-xs text-amber-600">— no appliance storage issues above threshold</span>
+        {/if}
+        <div class="ml-auto flex items-center gap-1.5">
+          <span class="text-xs text-amber-700">Alert threshold:</span>
+          <select
+            class="text-xs border border-amber-300 rounded px-1.5 py-0.5 bg-white text-amber-800 font-medium"
+            bind:value={storageThreshold}
+            on:change={async () => { storageAlerts = await api.storageAlerts(storageThreshold); showAllAlerts = false; }}
+          >
+            <option value={70}>≥ 70%</option>
+            <option value={75}>≥ 75%</option>
+            <option value={80}>≥ 80%</option>
+            <option value={85}>≥ 85%</option>
+            <option value={90}>≥ 90%</option>
+            <option value={95}>≥ 95%</option>
+          </select>
+        </div>
       </div>
+      {#if storageAlerts.length > 0}
       <div class="overflow-x-auto">
         <table class="w-full text-xs">
           <thead>
             <tr class="border-b border-amber-200">
-              <th class="text-left py-1.5 pr-4 text-amber-700 font-semibold">Device</th>
               <th class="text-left py-1.5 pr-4 text-amber-700 font-semibold">Client</th>
+              <th class="text-left py-1.5 pr-4 text-amber-700 font-semibold">Devices</th>
               <th class="text-left py-1.5 pr-4 text-amber-700 font-semibold uppercase">Tool</th>
-              <th class="text-left py-1.5 pr-4 text-amber-700 font-semibold">Last Backup</th>
-              <th class="text-left py-1.5 text-amber-700 font-semibold">Error</th>
+              <th class="text-left py-1.5 pr-4 text-amber-700 font-semibold">Updated</th>
+              <th class="text-left py-1.5 text-amber-700 font-semibold">Issue</th>
             </tr>
           </thead>
           <tbody>
-            {#each storageAlerts as alert}
+            {#each (showAllAlerts ? storageAlerts : storageAlerts.slice(0, 10)) as alert}
               <tr class="border-b border-amber-100">
-                <td class="py-1.5 pr-4 font-medium text-amber-900">{alert.device_name}</td>
-                <td class="py-1.5 pr-4 text-amber-800">{alert.org_name}</td>
+                <td class="py-1.5 pr-4 font-medium text-amber-900">{alert.org_name}</td>
+                <td class="py-1.5 pr-4 text-amber-800" title={alert.devices.join(', ')}>
+                  {alert.device_count} device{alert.device_count !== 1 ? 's' : ''}
+                </td>
                 <td class="py-1.5 pr-4 text-amber-700 uppercase">{alert.tool}</td>
                 <td class="py-1.5 pr-4 text-amber-700">{alert.last_backup ? new Date(alert.last_backup).toLocaleDateString() : '—'}</td>
-                <td class="py-1.5 text-amber-700 truncate max-w-xs" title={alert.last_error ?? ''}>{alert.last_error ?? '—'}</td>
+                <td class="py-1.5 text-amber-700">{alert.last_error ?? '—'}</td>
               </tr>
             {/each}
           </tbody>
         </table>
+        {#if storageAlerts.length > 10}
+          <div class="mt-2 text-center">
+            <button
+              class="text-xs text-amber-600 hover:text-amber-800 font-semibold underline"
+              on:click={() => showAllAlerts = !showAllAlerts}
+            >
+              {showAllAlerts ? 'Show less' : `Show all ${storageAlerts.length} clients`}
+            </button>
+          </div>
+        {/if}
       </div>
+      {/if}
     </div>
     {/if}
 

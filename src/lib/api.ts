@@ -69,8 +69,8 @@ export const api = {
       body: JSON.stringify({ messages }),
     }),
 
-  storageAlerts: () =>
-    request<StorageAlert[]>('/api/v1/dashboard/storage-alerts'),
+  storageAlerts: (threshold = 85) =>
+    request<StorageAlert[]>(`/api/v1/dashboard/storage-alerts?threshold=${threshold}`),
 
   recheckJob: (jobId: number) =>
     request<{ new_jobs: number; message: string }>(`/api/v1/dashboard/jobs/${jobId}/recheck`, { method: 'POST' }),
@@ -619,9 +619,10 @@ export interface AuditEntry {
 }
 
 export interface StorageAlert {
-  device_id: number;
-  device_name: string;
   org_name: string;
+  device_count: number;
+  max_storage_pct: number | null;
+  devices: string[];
   last_error: string | null;
   last_backup: string | null;
   tool: string;
